@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Hospital - Patient Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header-patient">
+        <h1>Healthcare Hospital</h1>
+
+        <nav class="navigation">
+            <a href="patient-dashboard.html">Home</a>
+            <a href="doctors.html">Find a Doctor</a>
+            <a href="appointments.html">My Appointments</a>
+            <a href="profile.html">My Profile</a>
+            <a href="login.html">Logout</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+
+        <section class="greeting">
+            <h2 id="patientName">Welcome!</h2>
+            <p>What would you like to do today?</p>
+        </section>
+
+        <section class="card booking-card">
+            <h2>Book an Appointment</h2>
+
+            <p>Find a doctor and book an appointment.</p>
+
+            <a href="doctors.html" class="btn btn-primary">Find a Doctor</a>
+        </section>
+
+<section class="card appointment-card">
+
+    <h2>Upcoming Appointments</h2>
+
+    <div id="appointmentCard" class="appointment-list"></div>
+
+</section>
+
+        <section class="card actions-container">
+            <h2>Quick Actions</h2>
+            <div class="action-grid">
+                <a href="doctors.html" class="btn btn-primary">Book Appointment</a>
+        
+                <a href="appointments.html" class="btn btn-primary">View Appointments</a>
+                <a href="profile.html" class="btn btn-primary">View Profile</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Healthcare Hospital. All rights reserved.</p>
+    </footer>
+<script src="dashboard.js"></script>
+</body>
+
+</html>

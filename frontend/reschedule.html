@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Hospital - Reschedule Appointment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header-patient">
+        <h1>Healthcare Hospital</h1>
+
+        <nav class="navigation">
+            <a href="patient-dashboard.html">Home</a>
+            <a href="doctors.html">Find a Doctor</a>
+            <a href="appointments.html">My Appointments</a>
+            <a href="profile.html">My Profile</a>
+            <a href="login.html">Logout</a>
+        </nav>
+    </header>
+
+
+    <main class="dashboard-container">
+
+        <section class="card current-appointment">
+
+            <h2>Reschedule Appointment</h2>
+
+            <h3>Current Appointment</h3>
+
+            <p>Doctor: Dr. Rahul Sharma</p>
+            <p>Specialty: Cardiology</p>
+            <p>Date: 28 September 2026</p>
+            <p>Time: 10:30 AM</p>
+
+        </section>
+
+
+        <section class="card reschedule-form">
+
+            <h3>Select New Date and Time</h3>
+
+            <form>
+
+                <label for="new-date">
+                    New Date:
+                </label>
+
+                <input
+                    type="date"
+                    id="new-date"
+                    name="new-date"
+                    required
+                >
+
+                
+
+
+                <label for="new-time">
+                    New Time:
+                </label>
+
+                <select
+                    id="new-time"
+                    name="new-time"
+                    required
+                >
+                    <option value="">
+                        Select a time
+                    </option>
+
+                    <option value="09:00">
+                        09:00 AM
+                    </option>
+
+                    <option value="10:00">
+                        10:00 AM
+                    </option>
+
+                    <option value="11:00">
+                        11:00 AM
+                    </option>
+
+                    <option value="14:00">
+                        02:00 PM
+                    </option>
+
+                    <option value="15:00">
+                        03:00 PM
+                    </option>
+                </select>
+
+            
+
+                <button type="submit" class="btn btn-primary">
+                    Confirm Reschedule
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <section class="reschedule-back">
+
+            <a href="appointments.html" class="btn btn-secondary">
+                Back to My Appointments
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>&copy; 2026 Healthcare Hospital. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>

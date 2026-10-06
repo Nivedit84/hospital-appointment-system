@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Hospital - Doctor Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header-patient">
+        <h1>Healthcare Hospital</h1>
+
+        <nav class="navigation">
+            <a href="patient-dashboard.html">Home</a>
+            <a href="doctors.html">Find a Doctor</a>
+            <a href="appointments.html">My Appointments</a>
+            <a href="profile.html">My Profile</a>
+            <a href="login.html">Logout</a>
+        </nav>
+    </header>
+
+
+    <main class="dashboard-container">
+
+        <section class="card doctor-profile">
+
+    <h2>Doctor Profile</h2>
+
+    <h3 id="doctorName"></h3>
+
+    <p id="doctorSpecialty"></p>
+    <p id="doctorExperience"></p>
+    <p>Hospital: Healthcare Hospital</p>
+    <p id="doctorFee"></p>
+
+</section>
+
+
+<section class="card about-doctor">
+
+    <h2>About the Doctor</h2>
+
+    <p id="doctorBio"></p>
+
+</section>
+
+
+        <section class="card available-appointments">
+
+            <h2>Available Appointments</h2>
+
+            <p>Select a date to see available time slots.</p>
+
+            <label for="appointment-date">Date:</label>
+<input
+    type="date"
+    id="appointment-date"
+    name="appointment-date"
+>
+
+<h3>Available Time Slots</h3>
+
+<div id="timeSlots" class="time-slots">
+    <p>Select a date to see available slots.</p>
+</div>
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>&copy; 2026 Healthcare Hospital. All rights reserved.</p>
+    </footer>
+<script src="doctor-profile.js"></script>
+</body>
+
+</html>

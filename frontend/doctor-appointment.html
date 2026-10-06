@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Hospital - Appointment Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header-patient">
+
+        <h1>Healthcare Hospital</h1>
+
+        <nav class="navigation">
+            <a href="doctor-dashboard.html">Dashboard</a>
+            <a href="doctor-appointments.html">Appointments</a>
+            <a href="doctor-profile.html">My Profile</a>
+            <a href="login.html">Logout</a>
+        </nav>
+
+    </header>
+
+
+    <main class="dashboard-container">
+
+        <section class="card appointment-details">
+
+            <h2>Appointment Details</h2>
+
+            <p id="appointmentId"></p>
+
+            <p id="patientName"></p>
+
+            <p id="patientPhone"></p>
+
+            <p id="patientDOB"></p>
+
+            <p id="patientGender"></p>
+
+            <p id="appointmentDate"></p>
+
+            <p id="appointmentTime"></p>
+
+            <p id="appointmentReason"></p>
+
+            <p id="appointmentStatus"></p>
+
+        </section>
+
+
+        <section class="card appointment-actions-card">
+
+            <h2>Appointment Actions</h2>
+
+            <div class="appointment-action-buttons">
+
+                <button
+                    id="completeButton"
+                    type="button"
+                    class="btn btn-primary">
+                    Mark as Completed
+                </button>
+
+                <button
+                    id="cancelButton"
+                    type="button"
+                    class="btn btn-danger">
+                    Cancel Appointment
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <section class="appointment-back">
+
+            <a href="doctor-appointments.html" class="btn btn-primary">
+                Back to Appointments
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>&copy; 2026 Healthcare Hospital. All rights reserved.</p>
+
+    </footer>
+
+
+    <script src="doctor-appointments.js"></script>
+
+</body>
+
+</html>

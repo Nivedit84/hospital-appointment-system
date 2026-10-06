@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Hospital - Book Appointment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header-patient">
+        <h1>Healthcare Hospital</h1>
+
+        <nav class="navigation">
+            <a href="patient-dashboard.html">Home</a>
+            <a href="doctors.html">Find a Doctor</a>
+            <a href="appointments.html">My Appointments</a>
+            <a href="profile.html">My Profile</a>
+            <a href="login.html">Logout</a>
+        </nav>
+    </header>
+
+
+    <main class="dashboard-container">
+
+        <section class="card appointment-details">
+
+    <h2>Appointment Details</h2>
+
+    <p id="doctorName"></p>
+    <p id="doctorSpecialty"></p>
+    <p id="appointmentDate"></p>
+    <p id="appointmentTime"></p>
+    <p id="consultationFee"></p>
+
+</section>
+
+
+        <section class="card patient-details">
+
+    <h2>Appointment Details</h2>
+
+    <form id="bookingForm">
+
+        <label for="reason">Reason for Visit:</label>
+
+        <textarea
+            id="reason"
+            name="reason"
+            rows="4"
+            required
+        ></textarea>
+
+        <button type="submit" class="btn btn-primary">
+            Confirm Appointment
+        </button>
+
+    </form>
+
+    <p id="bookingMessage"></p>
+
+</section>
+
+    </main>
+
+
+    <footer>
+        <p>&copy; 2026 Healthcare Hospital. All rights reserved.</p>
+    </footer>
+<script src="booking.js"></script>
+</body>
+
+</html>

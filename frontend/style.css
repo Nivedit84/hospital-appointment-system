@@ -1,0 +1,1569 @@
+/* =========================================================
+   1. GLOBAL
+   ========================================================= */
+
+#loginError {
+    color: red;
+}
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fb;
+    color: #1f2937;
+}
+
+header {
+    width: 100%;
+    flex-shrink: 0;
+    padding: 18px 20px;
+
+    background-color: #2563eb;
+    color: white;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: clamp(22px, 2.2vw, 34px);
+    line-height: 1.2;
+}
+
+footer {
+    width: 100%;
+    flex-shrink: 0;
+    padding: 18px 20px;
+
+    color: #6b7280;
+    font-size: 14px;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+
+/* =========================================================
+   2. SHARED HEADER / NAVIGATION
+   ========================================================= */
+
+.header-patient {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.navigation a {
+    padding: 8px 10px;
+    border-radius: 6px;
+
+    color: white;
+    text-decoration: none;
+}
+
+.navigation a:hover {
+    background-color: #1d4ed8;
+}
+
+
+/* =========================================================
+   3. SHARED LAYOUT
+   ========================================================= */
+
+.dashboard-container {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 0;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.dashboard-container > section {
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   4. SHARED CARD
+   ========================================================= */
+
+.card {
+    padding: 20px;
+    margin: 10px 0;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 7px;
+
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   5. SHARED BUTTONS
+   ========================================================= */
+
+.btn {
+    display: inline-block;
+    padding: 10px 18px;
+
+    border-radius: 7px;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: bold;
+
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    color: white;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-secondary {
+    background-color: #6b7280;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #4b5563;
+}
+
+.btn-danger {
+    border: none;
+    background-color: #dc2626;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #b91c1c;
+}
+
+
+/* =========================================================
+   6. LOGIN / RESET PASSWORD
+   ========================================================= */
+
+.login-container {
+    flex: 1;
+    width: calc(100% - 40px);
+    max-width: 1050px;
+    margin: 40px auto;
+
+    display: flex;
+
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+}
+
+.login-image,
+.reset-image {
+    width: 50%;
+    min-height: 540px;
+
+    background-image:
+        linear-gradient(
+            rgba(37, 99, 235, 0.72),
+            rgba(37, 99, 235, 0.72)
+        ),
+        url("https://images.unsplash.com/photo-1576091160399-112ba8d25d1d");
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+
+    color: white;
+}
+
+.image-overlay {
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.image-overlay h2 {
+    margin: 0 0 14px;
+    font-size: clamp(26px, 2.5vw, 40px);
+    line-height: 1.2;
+}
+
+.image-overlay p {
+    margin: 0;
+    font-size: clamp(14px, 1.1vw, 18px);
+    line-height: 1.6;
+}
+
+.login-card,
+.reset-account {
+    width: 50%;
+    padding: clamp(40px, 4vw, 60px);
+    padding-top: 10%;
+
+    background-color: white;
+}
+
+.login-card h2,
+.reset-account h2 {
+    margin: 0 0 20px;
+    color: #1e3a8a;
+    font-size: clamp(26px, 2.2vw, 34px);
+    line-height: 1.2;
+}
+
+.login-subtitle {
+    margin: 0 0 30px;
+    color: #6b7280;
+    font-size: clamp(13px, 0.9vw, 16px);
+    line-height: 1.5;
+}
+
+
+/* Login / reset forms */
+
+.login-card form,
+.reset-account form {
+    width: 100%;
+}
+
+.login-card label,
+.reset-account label {
+    display: block;
+    margin-bottom: 7px;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.login-card input,
+.login-card select,
+.reset-account input {
+    display: block;
+    width: 100%;
+    min-width: 0;
+
+    padding: 12px;
+    margin-bottom: 20px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+
+    background-color: white;
+
+    font-family: inherit;
+    font-size: 16px;
+    color: #1f2937;
+}
+
+.login-card input:focus,
+.login-card select:focus,
+.reset-account input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.btn-login,
+.btn-reset {
+    width: 100%;
+    border: none;
+
+    background-color: #2563eb;
+    color: white;
+}
+
+.btn-login:hover,
+.btn-reset:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-reset {
+    margin-top: 20px;
+}
+
+
+/* Login links */
+
+.forgot-link {
+    display: block;
+    margin-top: 18px;
+
+    color: #2563eb;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+.signup-text {
+    margin: 28px 0 0;
+
+    color: #6b7280;
+    font-size: 15px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.signup-text a,
+.last-line a {
+    color: #2563eb;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.signup-text a:hover,
+.last-line a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   7. SIGN UP
+   ========================================================= */
+
+.signup-container {
+    flex: 1;
+    width: calc(100% - 40px);
+    max-width: 1050px;
+    margin: 40px auto;
+
+    display: flex;
+
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+}
+
+.signup-image {
+    width: 40%;
+    min-height: 650px;
+
+    background-image:
+        linear-gradient(
+            rgba(37, 99, 235, 0.72),
+            rgba(37, 99, 235, 0.72)
+        ),
+        url("https://images.unsplash.com/photo-1576091160399-112ba8d25d1d");
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+
+    color: white;
+}
+
+.signup-image .image-overlay {
+    max-width: 400px;
+}
+
+.create-account {
+    width: 60%;
+    padding: 40px;
+    background-color: white;
+}
+
+.create-account h2 {
+    margin: 0 0 25px;
+    color: #1e3a8a;
+    font-size: 28px;
+    text-align: center;
+}
+
+.create-account input[type="text"],
+.create-account input[type="email"],
+.create-account input[type="tel"],
+.create-account input[type="password"],
+.create-account input[type="date"] {
+    display: block;
+    width: 100%;
+
+    padding: 10px;
+    margin-bottom: 20px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+
+    background-color: white;
+
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.create-account label[for="full-name"],
+.create-account label[for="email"],
+.create-account label[for="phone"],
+.create-account label[for="password"],
+.create-account label[for="confirm-password"],
+.create-account label[for="dob"],
+.create-account p:first-of-type {
+    display: block;
+    margin-bottom: 7px;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.create-account input[type="radio"] {
+    margin-right: 5px;
+}
+
+.create-account label[for="male"],
+.create-account label[for="female"],
+.create-account label[for="other"] {
+    display: inline;
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.btn-signup {
+    width: 100%;
+    margin-top: 15px;
+
+    background-color: #2563eb;
+    color: white;
+}
+
+.btn-signup:hover {
+    background-color: #1d4ed8;
+}
+
+.last-line {
+    margin: 22px 0 0;
+
+    color: #6b7280;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+/* =========================================================
+   8. PATIENT DASHBOARD
+   ========================================================= */
+
+.greeting {
+    margin-bottom: 20px;
+}
+
+.greeting h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.greeting p {
+    margin-bottom: 10px;
+    color: #6b7280;
+    font-size: 16px;
+}
+
+.booking-card h2,
+.actions-container h2 {
+    margin: 0 0 10px;
+}
+
+.booking-card p {
+    margin: 0 0 10px;
+}
+
+.booking-card a:hover,
+.appointment-card a:hover {
+    background-color: #1d4ed8;
+}
+
+.article-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+.appointment-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.appointment-card h2 {
+    margin: 0 0 10px;
+}
+
+@media (max-width: 1000px) {
+    .appointment-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .appointment-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+.appointment-card article {
+    margin: 0;
+    border: 1px solid #e5e7eb;
+    border-radius: 7px;
+}
+
+.appointment-card a:hover {
+    background-color: #1d4ed8;
+}
+
+.appointment-info h3 {
+    margin: 0 0 6px;
+}
+
+.appointment-info p {
+    margin: 4px 0;
+    color: #6b7280;
+}
+
+.action-grid {
+    display: flex;
+    gap: 15px;
+}
+
+
+/* =========================================================
+   9. DOCTOR LIST
+   ========================================================= */
+
+.doctors-section h2 {
+    margin: 10px;
+}
+
+.doctor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.doctor-card {
+    min-width: 0;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.doctor-card h3 {
+    margin: 0 0 12px;
+}
+
+.doctor-card p {
+    margin: 7px 0;
+    color: #6b7280;
+}
+
+.doctor-card .btn {
+    margin-top: 15px;
+}
+
+
+/* Doctor search */
+
+.speciality-card {
+    border-radius: 20px;
+}
+
+.speciality-card label,
+.speciality-card select {
+    display: inline-block;
+}
+
+.speciality-card select {
+    padding: 8px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.btn-search {
+    padding: 8px;
+    margin-top: 5px;
+    border: none;
+    background-color: #2563eb;
+    color: white;
+}
+
+.btn-search:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-reset {
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* =========================================================
+   10. DOCTOR PROFILE
+   ========================================================= */
+
+.doctor-profile h2 {
+    margin: 0 0 20px;
+}
+
+.doctor-profile h3 {
+    margin: 0 0 10px;
+    font-size: 24px;
+}
+
+.doctor-profile p {
+    margin: 8px 0;
+    color: #6b7280;
+}
+
+.about-doctor h2 {
+    margin: 0 0 12px;
+}
+
+.about-doctor p {
+    margin: 0;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+.available-appointments h2 {
+    margin: 0 0 10px;
+}
+
+.available-appointments p {
+    margin: 0 0 18px;
+    color: #6b7280;
+}
+
+.available-appointments label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+.available-appointments input {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+
+    padding: 10px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.available-appointments h3 {
+    margin: 25px 0 15px;
+}
+
+.time-slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+/* =========================================================
+   11. BOOKING PAGE
+   ========================================================= */
+
+.appointment-details h2,
+.patient-details h2 {
+    margin: 0 0 20px;
+}
+
+.appointment-details p {
+    margin: 8px 0;
+    color: #6b7280;
+}
+
+.patient-details form {
+    width: 100%;
+}
+
+.patient-details label {
+    display: block;
+    margin-bottom: 7px;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.patient-details input[type="text"],
+.patient-details input[type="date"],
+.patient-details input[type="tel"],
+.patient-details input[type="email"],
+.patient-details textarea {
+    display: block;
+    width: 100%;
+
+    padding: 12px;
+    margin-bottom: 20px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+
+    background-color: white;
+
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.patient-details input:focus,
+.patient-details textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.patient-details textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.patient-details input[type="radio"] {
+    margin-right: 5px;
+}
+
+.patient-details input[type="radio"] + label {
+    display: inline;
+    margin-right: 15px;
+    font-weight: normal;
+}
+
+.patient-details button {
+    border: none;
+}
+
+
+/* =========================================================
+   12. APPOINTMENTS / RESCHEDULE
+   ========================================================= */
+
+.appointment-card h4 {
+    margin: 0 0 15px;
+    font-size: 20px;
+}
+
+.appointment-card p {
+    margin: 7px 0;
+    color: #6b7280;
+}
+
+.appointment-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.current-appointment h2 {
+    margin: 0 0 20px;
+}
+
+.current-appointment h3 {
+    margin: 0 0 15px;
+}
+
+.current-appointment p {
+    margin: 8px 0;
+    color: #6b7280;
+}
+
+.reschedule-form h3 {
+    margin: 0 0 20px;
+}
+
+.reschedule-form label {
+    display: block;
+    margin-bottom: 7px;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.reschedule-form input[type="date"],
+.reschedule-form select {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+
+    padding: 12px;
+    margin-bottom: 20px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+
+    background-color: white;
+
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.reschedule-form input:focus,
+.reschedule-form select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.reschedule-back {
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   13. CONFIRMATION PAGE
+   ========================================================= */
+
+.confirmation-success {
+    background-color: #f0fdf4;
+    border-color: #bbf7d0;
+    text-align: center;
+}
+
+.confirmation-success h2 {
+    margin: 0 0 10px;
+    color: #166534;
+}
+
+.confirmation-success p {
+    margin: 0;
+    color: #15803d;
+}
+
+.confirmation-details h2,
+.confirmation-actions h2 {
+    margin: 0 0 20px;
+}
+
+.confirmation-details p {
+    margin: 8px 0;
+    color: #6b7280;
+}
+
+.confirmation-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+/* =========================================================
+   14. DOCTOR DASHBOARD
+   ========================================================= */
+
+.upcoming-summary h2,
+.availability-card h2 {
+    margin: 0 0 10px;
+}
+
+.upcoming-summary p,
+.availability-card p {
+    margin: 0 0 18px;
+    color: #6b7280;
+}
+
+.upcoming-summary a,
+.availability-card a {
+    display: inline-block;
+}
+
+/* =========================================================
+   14. DOCTOR DASHBOARD - management page
+   ========================================================= */
+.appointment-actions-card h2 {
+    margin: 0 0 20px;
+}
+
+.appointment-action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.appointment-back {
+    margin-top: 20px;
+}
+
+/* =========================================================
+   15. ADMIN DASHBOARD
+   ========================================================= */
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.overview-card {
+    padding: 20px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+
+    background-color: #f9fafb;
+    text-align: center;
+}
+
+.overview-card h3 {
+    margin: 0 0 10px;
+    color: #6b7280;
+    font-size: 15px;
+}
+
+.overview-card p {
+    margin: 0;
+    color: #1e3a8a;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.management-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.management-card h3 {
+    margin: 0 0 10px;
+}
+
+.management-card p {
+    margin: 0 0 18px;
+    color: #6b7280;
+}
+
+/* =========================================================
+   14. Admin DASHBOARD - manange appointments
+   ========================================================= */
+.appointment-management-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.management-appointment-card {
+    min-width: 0;
+}
+
+.management-appointment-card h3 {
+    margin: 0 0 15px;
+}
+
+.management-appointment-card p {
+    margin: 7px 0;
+    color: #6b7280;
+}
+
+.management-appointment-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+/* =========================================================
+   14. Admin DASHBOARD - manange doctors
+   ========================================================= */
+.doctor-management-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.management-doctor-card {
+    min-width: 0;
+}
+
+.management-doctor-card h3 {
+    margin: 0 0 15px;
+}
+
+.management-doctor-card p {
+    margin: 7px 0;
+    color: #6b7280;
+}
+
+.management-doctor-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.management-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.management-header h2 {
+    margin: 0;
+}
+
+.patient-management-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.management-patient-card {
+    min-width: 0;
+    padding: 50px;
+    margin: 50px 10px;
+    border-radius: 20px;
+}
+
+.management-patient-card h3 {
+    margin: 0 0 15px;
+}
+
+.management-patient-card p {
+    margin: 7px 0;
+    color: #6b7280;
+}
+
+.management-patient-card .btn {
+    margin-top: 15px;
+}
+
+/* =========================================================
+   16. RESPONSIVE DESIGN
+   ========================================================= */
+
+/* ---------- Tablet: 601px - 900px ---------- */
+
+@media (max-width: 900px) {
+
+    /* Login / Reset */
+    .login-container {
+        width: calc(100% - 32px);
+        max-width: 650px;
+        margin: 30px auto;
+        flex-direction: column;
+    }
+
+    .login-image,
+    .reset-image {
+        width: 100%;
+        min-height: 240px;
+        height: 240px;
+        padding: 30px;
+    }
+
+    .login-card,
+    .reset-account {
+        width: 100%;
+        padding: 40px;
+    }
+
+    .image-overlay h2 {
+        font-size: 30px;
+    }
+
+    .image-overlay p {
+        font-size: 15px;
+    }
+
+    /* Sign up */
+    .signup-container {
+        width: calc(100% - 32px);
+        max-width: 700px;
+        margin: 30px auto;
+        flex-direction: column;
+    }
+
+    .signup-image {
+        width: 100%;
+        min-height: 220px;
+        height: 220px;
+        padding: 30px;
+    }
+
+    .create-account {
+        width: 100%;
+        padding: 40px;
+    }
+
+    /* Doctor list */
+    .doctor-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Admin */
+    .overview-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .management-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* ---------- Mobile: 600px and below ---------- */
+
+@media (max-width: 600px) {
+
+    /* Header */
+    header {
+        padding: 15px 12px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    .header-patient {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .navigation {
+        width: 100%;
+        min-width: 0;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .navigation a {
+        padding: 6px 7px;
+        font-size: 14px;
+    }
+
+
+    /* Shared dashboard */
+    .dashboard-container {
+        width: 100%;
+        min-width: 0;
+        padding: 25px 12px;
+    }
+
+
+    /* Login / Reset */
+    .login-container {
+        width: calc(100% - 24px);
+        margin: 20px auto;
+        border-radius: 12px;
+    }
+
+    .login-image,
+    .reset-image {
+        width: 100%;
+        min-height: 165px;
+        height: 165px;
+        padding: 20px;
+    }
+
+    .image-overlay {
+        max-width: 320px;
+    }
+
+    .image-overlay h2 {
+        margin-bottom: 8px;
+        font-size: 25px;
+    }
+
+    .image-overlay p {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .login-card,
+    .reset-account {
+        width: 100%;
+        padding: 30px 22px;
+    }
+
+    .login-card h2,
+    .reset-account h2 {
+        font-size: 27px;
+    }
+
+    .login-subtitle {
+        margin-bottom: 25px;
+        font-size: 14px;
+    }
+
+    .login-card input,
+    .login-card select,
+    .reset-account input {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .login-card button {
+        padding: 13px;
+        font-size: 16px;
+    }
+
+    .forgot-link,
+    .signup-text {
+        font-size: 14px;
+    }
+
+
+    /* Sign up */
+    .signup-container {
+        width: calc(100% - 24px);
+        margin: 20px auto;
+        border-radius: 12px;
+    }
+
+    .signup-image {
+        width: 100%;
+        min-height: 165px;
+        height: 165px;
+        padding: 20px;
+    }
+
+    .signup-image .image-overlay {
+        max-width: 320px;
+    }
+
+    .signup-image .image-overlay h2 {
+        margin-bottom: 8px;
+        font-size: 25px;
+    }
+
+    .signup-image .image-overlay p {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .create-account {
+        width: 100%;
+        padding: 30px 22px;
+    }
+
+    .create-account h2 {
+        font-size: 27px;
+    }
+
+    .create-account input[type="text"],
+    .create-account input[type="email"],
+    .create-account input[type="tel"],
+    .create-account input[type="password"],
+    .create-account input[type="date"] {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+
+    /* Doctor search */
+    .speciality-card {
+        width: 100%;
+        min-width: 0;
+    }
+    .speciality-card label {
+        display: block;
+        margin-bottom: 7px;
+    }
+
+    .speciality-card select {
+        display: block;
+        width: 100%;
+        margin: 0 0 10px;
+    }
+
+    .speciality-card .btn,
+    .speciality-card .btn-search {
+        display: block;
+        width: 100%;
+        margin-top: 0;
+        text-align: center;
+    }
+
+
+    /* Doctor cards */
+    .doctor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .doctor-card .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+
+    /* Appointment cards */
+    .article-card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .article-card a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .appointment-actions {
+        flex-direction: column;
+    }
+
+    .appointment-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+
+    /* Doctor profile */
+    .time-slots {
+        flex-direction: column;
+    }
+
+    .time-slots .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .available-appointments input {
+        max-width: none;
+    }
+
+
+    /* Reschedule */
+    .reschedule-form input[type="date"],
+    .reschedule-form select {
+        max-width: none;
+    }
+
+    .reschedule-form .btn,
+    .reschedule-back .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+
+    /* Confirmation */
+    .confirmation-buttons {
+        flex-direction: column;
+    }
+
+    .confirmation-buttons .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+
+    /* Admin */
+    .overview-grid,
+    .management-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .overview-card {
+        padding: 18px;
+    }
+
+    .overview-card p {
+        font-size: 26px;
+    }
+
+    .management-card .btn {
+        width: 100%;
+        text-align: center;
+    }
+    .appointment-management-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .management-appointment-actions {
+        flex-direction: column;
+    }
+
+    .management-appointment-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+    .doctor-management-grid {
+    grid-template-columns: 1fr;
+    }
+
+    .management-doctor-actions {
+        flex-direction: column;
+    }
+
+    .management-doctor-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+    .management-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .management-header .btn {
+        width: 100%;
+        text-align: center;
+    }
+    .patient-management-grid {
+    grid-template-columns: 1fr;
+    }
+
+    .management-patient-card .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+
+    /* Patient dashboard */
+    .action-grid {
+        flex-direction: column;
+    }
+
+    .appointment-action-buttons {
+        flex-direction: column;
+    }
+
+    .appointment-action-buttons .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+/* ---------- Small phones: 380px and below ---------- */
+
+@media (max-width: 380px) {
+
+    header {
+        padding: 13px 10px;
+    }
+
+    header h1 {
+        font-size: 21px;
+    }
+
+    .login-container {
+        width: calc(100% - 16px);
+        margin: 15px auto;
+        border-radius: 10px;
+    }
+
+    .login-image {
+        min-height: 145px;
+        height: 145px;
+        padding: 15px;
+    }
+
+    .image-overlay h2 {
+        font-size: 22px;
+    }
+
+    .image-overlay p {
+        font-size: 13px;
+    }
+
+    .login-card {
+        padding: 25px 16px;
+    }
+
+    .login-card h2 {
+        font-size: 24px;
+    }
+
+    .login-subtitle {
+        font-size: 13px;
+    }
+
+    .login-card input,
+    .login-card select {
+        padding: 11px;
+        font-size: 16px;
+    }
+
+    .login-card button {
+        padding: 12px;
+    }
+
+    .forgot-link,
+    .signup-text {
+        font-size: 13px;
+    }
+
+    .signup-container {
+        width: calc(100% - 16px);
+        margin: 15px auto;
+        border-radius: 10px;
+    }
+
+    .signup-image {
+        min-height: 145px;
+        height: 145px;
+        padding: 15px;
+    }
+
+    .signup-image .image-overlay h2 {
+        font-size: 22px;
+    }
+
+    .signup-image .image-overlay p {
+        font-size: 13px;
+    }
+
+    .create-account {
+        padding: 25px 16px;
+    }
+
+    .create-account h2 {
+        font-size: 24px;
+    }
+
+    .create-account input[type="text"],
+    .create-account input[type="email"],
+    .create-account input[type="tel"],
+    .create-account input[type="password"],
+    .create-account input[type="date"] {
+        padding: 11px;
+    }
+
+    footer {
+        padding: 14px 10px;
+        font-size: 12px;
+    }
+}

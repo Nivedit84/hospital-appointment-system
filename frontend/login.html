@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Hospital - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1> Healthcare Hospital</h1>
+    </header>
+    <main class="login-container">
+
+    <section class="login-image">
+        <div class="image-overlay">
+            <h2>Healthcare Hospital</h2>
+            <p>
+                Quality healthcare, accessible when you need it.
+            </p>
+        </div>
+    </section>
+
+    <section class="login-card">
+
+        <h2>Welcome Back</h2>
+        <p class="login-subtitle">Login to manage your appointments</p>
+        <p id="loginError"></p>
+
+        <form id="loginForm">
+
+            <label for="email">Email</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+            >
+
+            <button type="submit" class="btn btn-login">Login</button>
+
+        </form>
+
+        <a href="forgot-password.html" class="forgot-link">
+            Forgot Password?
+        </a>
+
+        <p class="signup-text">
+            Don't have an account?
+            <a href="sign-up.html">Sign Up</a>
+        </p>
+
+    </section>
+<script src="login.js"></script>
+</main>
+    <footer>
+        <p> &copy; 2024 Healthcare Hospital. All rights reserved. </p>
+    </footer>
+</body>
+</html>
+        

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Hospital - Doctor Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header-patient">
+        <h1>Healthcare Hospital</h1>
+
+        <nav class="navigation">
+            <a href="doctor-dashboard.html">Dashboard</a>
+            <a href="doctor-profile.html">My Profile</a>
+            <a href="login.html">Logout</a>
+        </nav>
+    </header>
+
+
+    <main class="dashboard-container">
+
+        <section class="greeting">
+            <h2 id="doctorName">Welcome!</h2>
+            <p>Cardiology</p>
+        </section>
+
+
+        <section class="card">
+
+            <h2>Today's Appointments</h2>
+            <div id="appointmentCard"></div>
+        </section>
+
+        <section class="card availability-card">
+
+            <h2>Manage Availability</h2>
+
+            <p>Set your available appointment dates and time slots.</p>
+
+            <a href="#" class="btn btn-primary">
+                Manage Availability
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>&copy; 2026 Healthcare Hospital. All rights reserved.</p>
+    </footer>
+<script src="doctor-dashboard.js"></script>
+</body>
+
+</html>

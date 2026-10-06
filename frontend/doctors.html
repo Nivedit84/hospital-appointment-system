@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Hospital - Doctors</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header-patient">
+        <h1>Healthcare Hospital</h1>
+
+        <nav class="navigation">
+            <a href="patient-dashboard.html">Home</a>
+            <a href="doctors.html">Find a Doctor</a>
+            <a href="appointments.html">My Appointments</a>
+            <a href="profile.html">My Profile</a>
+            <a href="login.html">Logout</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+
+        <section>
+            <h2>Find a Doctor</h2>
+            <div class="card speciality-card">
+                <label for="specialty">Specialty:</label>
+
+                <select id="specialty">
+                    <option>All Specialties</option>
+                    <option>Cardiology</option>
+                    <option>Dermatology</option>
+                    <option>Neurology</option>
+                    <option>ENT</option>
+                </select>
+
+                <button type="button" class="btn btn-search">Search</button>
+            </div>
+        </section>
+            
+
+
+        <section class="doctors-section">
+
+            <h2>Available Doctors</h2>
+
+            <div id="doctorsList" class="doctor-grid"></div>
+
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Healthcare Hospital. All rights reserved.</p>
+    </footer>
+<script src="doctors.js"></script>
+</body>
+
+</html>
