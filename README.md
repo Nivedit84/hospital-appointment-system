@@ -118,3 +118,46 @@ Appointment-Management/
 
 └── README.md
 
+
+Setup Instructions
+1. Clone the repository
+git clone https://github.com/Nivedit84/hospital-appointment-system.git
+cd hospital-appointment-system
+
+2. Backend Setup
+Go to the backend:
+cd django-backend
+
+Create a virtual environment:
+python -m venv venv
+
+Activate it on Windows:
+venv\Scripts\activate
+
+Install dependencies:
+pip install -r requirements.txt
+
+Configure PostgreSQL in:
+hospital_backend/settings.py
+
+Run migrations:
+python manage.py migrate
+
+Start the backend:
+python manage.py runserver
+
+Backend:
+http://127.0.0.1:8000/
+
+3. Frontend Setup
+Open the frontend directory using a local development server.
+The frontend communicates with the Django backend at:
+http://127.0.0.1:8000/
+
+API Endpoints
+/api/auth/login/
+/api/auth/register/
+/api/doctors/
+/api/patients/
+/api/appointments/
+/api/schedules/
