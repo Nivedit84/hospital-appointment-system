@@ -79,8 +79,19 @@ async function loadSlots() {
 
     // Get all appointments
     const appointmentResponse = await fetch(
-        "http://127.0.0.1:8000/api/appointments/"
+        "http://127.0.0.1:8000/api/appointments/",
+        {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("token")}`
+            }
+        }
     );
+
+    if (!appointmentResponse.ok) {
+        throw new Error(
+            `Failed to load appointments: ${appointmentResponse.status}`
+        );
+    }
 
     const appointments = await appointmentResponse.json();
 

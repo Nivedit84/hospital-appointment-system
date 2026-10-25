@@ -2,6 +2,9 @@
    1. GLOBAL
    ========================================================= */
 
+#email-error, #phone-error {
+    color: red;
+}
 #loginError {
     color: red;
 }

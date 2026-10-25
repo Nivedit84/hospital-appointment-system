@@ -48,7 +48,19 @@ signupForm.addEventListener("submit", async function(event) {
     })
 
     const result = await response.json();
-    if (result.ok){
+    if (response.ok){
             window.location.href = "login.html";
+    } else {
+        if (result.email) {
+            document.getElementById("email-error").textContent = result.email[0];
+        }
+
+        if(result.phone) {
+            document.getElementById("phone-error").textContent = result.phone[0];
+        }
+
+        if(result.gender) {
+            document.getElementById("gender-error").textContent = result.phone[0];
+        }
     }
 });

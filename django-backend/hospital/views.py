@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
+from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
 from rest_framework import status
 from .models import Role, User, Patient, Doctor, Appointment, DoctorSchedule
@@ -18,9 +20,11 @@ class LoginAPIView(APIView):
 
         if serializer.is_valid():
             user = serializer.validated_data["user"]
+            token, created = Token.objects.get_or_create(user=user)
             if user.role.code == "PATIENT":
                 return Response({
                     "message": "Login successful",
+                    "token": token.key,
                     "user_id": user.id,
                     "patient_id": user.patient_profile.id,
                     "email": user.email,
@@ -29,6 +33,7 @@ class LoginAPIView(APIView):
             elif user.role.code == "DOCTOR":
                 return Response({
                     "message": "Login successful",
+                    "token": token.key,
                     "user_id": user.id,
                     "doctor_id": user.doctor_profile.id,
                     "email": user.email,
@@ -42,12 +47,13 @@ class PatientViewSet(viewsets.ModelViewSet):
     serializer_class = PatientSerializer
 
 class DoctorViewSet(viewsets.ModelViewSet):
-    queryset = Doctor.objects.all()
+    queryset = Doctor.objects.filter(status="active")
     serializer_class = DoctorSerializer
 
 class AppointmentViewSet(viewsets.ModelViewSet):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
+    permission_classes = [IsAuthenticated]
 
 class DoctorScheduleViewSet(viewsets.ModelViewSet):
     queryset = DoctorSchedule.objects.filter(status="active")

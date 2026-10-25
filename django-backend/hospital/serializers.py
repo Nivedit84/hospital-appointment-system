@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate
 from rest_framework import serializers   # from package import modules
 from .models import Role, User, Patient, Doctor, Appointment, DoctorSchedule  # import models from the current directory
-
+import re
 class RoleSerializer(serializers.ModelSerializer):  # Inherit from ModelSerializer to create a serializer for the Role model
     class Meta:
         model = Role
@@ -21,7 +21,59 @@ class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
         fields = '__all__'
+    
 
+    def validate(self, data):
+
+        if self.instance:
+            old_status = self.instance.status
+            new_status = data.get("status", old_status)
+
+            if old_status == "cancelled" and new_status == "completed":
+                raise serializers.ValidationError(
+                    "A cancelled appointment cannot be marked as completed."
+                )
+
+    # If this is only a status update
+    # (for example: cancelling an appointment),
+    # no slot validation is required.
+        if (
+            "doctor" not in data
+            and "appointment_date" not in data
+            and "appointment_time" not in data
+        ):
+            return data
+
+        doctor = data.get(
+            "doctor",
+            self.instance.doctor if self.instance else None
+        )
+
+        appointment_date = data.get(
+            "appointment_date",
+            self.instance.appointment_date if self.instance else None
+        )
+
+        appointment_time = data.get(
+            "appointment_time",
+            self.instance.appointment_time if self.instance else None
+        )
+
+        already_booked = Appointment.objects.filter(
+            doctor=doctor,
+            appointment_date=appointment_date,
+            appointment_time=appointment_time,
+            status="booked"
+        ).exclude(
+            id=self.instance.id if self.instance else None
+        ).exists()
+
+        if already_booked:
+            raise serializers.ValidationError(
+                "This appointment slot is already booked."
+            )
+
+        return data
 
 
 class DoctorScheduleSerializer(serializers.ModelSerializer):
@@ -42,6 +94,17 @@ class RegisterSerializerPatient(serializers.ModelSerializer):
     phone = serializers.CharField(required=True)
     date_of_birth = serializers.DateField(required=True)
     gender = serializers.CharField(required=True)
+
+    def validate_email(self, value):
+        if User.objects.filter(email=value).exists():   
+            raise serializers.ValidationError("Email is already registered.")
+        return value
+    def validate_phone(self, value):
+        if not re.fullmatch(r"[6-9]\d{9}", value):
+            raise serializers.ValidationError(
+                "Enter a valid 10-digit phone number."
+            )
+        return value
     
     def create(self, validated_data):
         patient_role = Role.objects.get(code='PATIENT')  # Get the role object for patients

@@ -21,6 +21,7 @@ loginForm.addEventListener("submit", async function(event) {   // Listens for ev
     const data = await response.json();
 
     if (response.ok) {
+        localStorage.setItem("token", data.token);
         if (data.role == "PATIENT") {
             console.log("Login successful");
             localStorage.setItem("patient_id", data.patient_id);
