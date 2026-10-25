@@ -31,7 +31,7 @@ signupForm.addEventListener("submit", async function(event) {
     event.preventDefault();
     // Stops the browser from reloading the page
 
-    const response = await fetch("http://127.0.0.1:8000/api/auth/register/patient/", {
+    const response = await fetch("http://3.80.91.65:8000/api/auth/register/patient/", {
         method: "POST",
         headers:{
             "content-Type": "application/json"
